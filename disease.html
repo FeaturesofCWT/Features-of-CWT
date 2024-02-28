@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disease to Medicine Mapper</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            background: linear-gradient(to right, #0040ff, #00f7ff);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-size: 30px;
+        }
+    
+        select, p {
+            font-family: 'Arial', sans-serif;
+            margin: 10px;
+            padding: 10px;
+            width: 300px; /* Adjust width as needed */
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000000;
+        }
+    
+        select {
+            cursor: pointer;
+        }
+    </style>
+    
+    <script>
+        function showMedicine() {
+            var diseaseSelect = document.getElementById("diseaseSelect");
+            var selectedDisease = diseaseSelect.options[diseaseSelect.selectedIndex].value;
+            var medicineDisplay = document.getElementById("medicineDisplay");
+            
+            var diseaseToMedicine = {
+                "Asthma": "Inhaled corticosteroids (e.g., Fluticasone)",
+                "ADHD": "Stimulants (e.g., Methylphenidate)",
+                "Autism Spectrum Disorder": "No specific medicine; Risperidone for symptoms",
+                "Bronchiolitis": "Supportive care; specific medication for complications if necessary",
+                "Chickenpox (Varicella)": "Antiviral drugs (e.g., Acyclovir) in some cases",
+                "Common Cold": "Supportive care; OTC remedies",
+                "Conjunctivitis": "Antibiotic eye drops (e.g., Erythromycin)",
+                "Croup": "Corticosteroids (e.g., Dexamethasone)",
+                "Cystic Fibrosis": "CFTR modulators (e.g., Ivacaftor)",
+                "Dental Caries": "Fluoride treatments; antibiotics for infections",
+                "Diabetes Type 1": "Insulin therapy",
+                "Ear Infections": "Antibiotics (e.g., Amoxicillin)",
+                "Eczema": "Topical corticosteroids",
+                "Epilepsy": "Antiepileptic drugs (e.g., Valproate)",
+                "Gastroenteritis": "Rehydration solutions; antiemetic (e.g., Ondansetron)",
+                "Hand, Foot, and Mouth Disease": "Supportive care",
+                "Influenza": "Antiviral drugs (e.g., Oseltamivir)",
+                "Iron Deficiency Anemia": "Iron supplements",
+                "Juvenile Idiopathic Arthritis": "NSAIDs, DMARDs",
+                "Lice": "Pediculicides (e.g., Permethrin)",
+                "Mumps": "Supportive care",
+                "Pertussis": "Antibiotics (e.g., Azithromycin)",
+                "Pneumonia": "Antibiotics (e.g., Amoxicillin)",
+                "Rotavirus": "Rehydration solutions",
+                "Scarlet Fever": "Antibiotics (e.g., Penicillin)",
+                "Strep Throat": "Antibiotics (e.g., Amoxicillin)",
+                "Tonsillitis": "Antibiotics for bacterial (e.g., Penicillin)",
+                "Tuberculosis": "Antituberculosis antibiotics (e.g., Isoniazid, Rifampin)",
+                "Urinary Tract Infections": "Antibiotics (e.g., Trimethoprim/sulfamethoxazole)",
+                "Varicose Veins": "Not typically pediatric; treatments vary",
+                "Measles": "Supportive care; Vitamin A for severe cases",
+                "Rubella": "Supportive care",
+                "Impetigo": "Topical or oral antibiotics (e.g., Mupirocin)",
+                "Ringworm": "Antifungal creams (e.g., Clotrimazole)",
+                "Fifth Disease": "Supportive care",
+                "Roseola": "Supportive care",
+                "Kawasaki Disease": "IVIG and aspirin",
+                "Meningitis": "Antibiotics for bacterial; supportive for viral",
+                "Osteomyelitis": "Antibiotics, sometimes IV",
+                "Rickets": "Vitamin D supplementation",
+                "Sickle Cell Disease": "Hydroxyurea; antibiotics for preventing infections",
+                "Thrush": "Antifungal (e.g., Nystatin oral suspension)",
+                "Zika Virus": "Supportive care",
+                "Lyme Disease": "Antibiotics (e.g., Doxycycline, Amoxicillin)",
+                "Molluscum Contagiosum": "Cryotherapy; imiquimod cream",
+                "RSV Infection": "Supportive care; Palivizumab for high-risk infants",
+                "Norovirus": "Rehydration solutions",
+                "Coeliac Disease": "Gluten-free diet"
+            };
+
+            medicineDisplay.innerHTML = "Medicine: " + (diseaseToMedicine[selectedDisease] || "No specific medication listed");
+        }
+    </script>
+</head>
+<body>
+
+<h2>Disease to Medicine Mapper</h2>
+
+<select id="diseaseSelect" onchange="showMedicine()">
+    <option value="">Select a Disease</option>
+    <!-- Append all disease options here -->
+    <script>
+        var diseaseSelect = document.getElementById("diseaseSelect");
+        var diseases = [
+            "Asthma", "ADHD", "Autism Spectrum Disorder",
+            "Bronchiolitis", "Chickenpox (Varicella)", "Common Cold",
+            "Conjunctivitis", "Croup", "Cystic Fibrosis", "Dental Caries",
+            "Diabetes Type 1", "Ear Infections", "Eczema", "Epilepsy",
+            "Gastroenteritis", "Hand, Foot, and Mouth Disease", "Influenza",
+            "Iron Deficiency Anemia", "Juvenile Idiopathic Arthritis", "Lice",
+            "Mumps", "Pertussis", "Pneumonia", "Rotavirus", "Scarlet Fever",
+            "Strep Throat", "Tonsillitis", "Tuberculosis", "Urinary Tract Infections",
+            "Varicose Veins", "Measles", "Rubella", "Impetigo", "Ringworm",
+            "Fifth Disease", "Roseola", "Kawasaki Disease", "Meningitis",
+            "Osteomyelitis", "Rickets", "Sickle Cell Disease", "Thrush",
+            "Zika Virus", "Lyme Disease", "Molluscum Contagiosum", "RSV Infection",
+            "Norovirus", "Coeliac Disease"
+        ];
+        diseases.forEach(function(disease) {
+            var option = document.createElement("option");
+            option.value = disease;
+            option.text = disease;
+            diseaseSelect.appendChild(option);
+        });
+    </script>
+</select>
+
+<p id="medicineDisplay">Medicine: Please select a disease.</p>
+
+</body>
+</html>

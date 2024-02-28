@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #0040ff, #00f7ff);
+}
+
+.container {
+    width: 80%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    color: #333;
+}
+
+select, input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Adding subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover and focus */
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adding transform to transitions */
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px); /* Slight raise effect on hover */
+}
+
+select:focus, input:focus {
+    border-color: #007bff; /* Highlight focus on interactive elements */
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.5); /* More noticeable focus ring */
+}

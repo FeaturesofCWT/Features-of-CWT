@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to right, #0040ff, #00f7ff);
+        text-align: center;
+        color: white;
+    }
+    #bmiCalculator, #thankYouMessage {
+        padding: 20px;
+        max-width: 400px;
+        margin: 40px auto;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="number"], select, input[type="button"] {
+        padding: 15px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        width: calc(100% - 30px);
+        font-size: 16px;
+    }
+    #calculateBMI, #submitBMI {
+        padding: 10px 20px;
+        background-color: #27ae60;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+    #calculateBMI:hover, #submitBMI:hover {
+        background-color: #2ecc71;
+    }
+    #result {
+        font-size: 20px;
+        padding: 20px;
+        display: none; /* Initially hide the result */
+    }
+    h1 {
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div id="bmiCalculator">
+    <h1>BMI Calculator</h1>
+    <form id="bmiForm">
+        <input type="text" id="firstName" placeholder="First Name" required><br>
+        <input type="text" id="lastName" placeholder="Last Name" required><br>
+        <select id="gender" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select><br>
+        <input type="number" id="age" placeholder="Age" required><br>
+        <input type="number" id="height" placeholder="Height (in inches)" required><br>
+        <input type="number" id="weight" placeholder="Weight (in lbs)" required><br>
+        <input type="button" id="calculateBMI" value="Calculate BMI">
+    </form>
+    <div id="result"></div>
+    <input type="button" id="submitBMI" value="Submit" style="display:none;">
+</div>
+
+<div id="thankYouMessage" style="display:none;">
+    <h1>Thank You!</h1>
+</div>
+
+<script>
+function getBMICategory(bmi) {
+    if (bmi < 18.5) return "Underweight";
+    else if (bmi >= 18.5 && bmi < 25) return "Normal weight";
+    else if (bmi >= 25 && bmi < 30) return "Overweight";
+    else return "Obese";
+}
+
+document.getElementById('calculateBMI').onclick = function() {
+    var height = parseInt(document.getElementById('height').value);
+    var weight = parseInt(document.getElementById('weight').value);
+    var bmi = (weight / (height * height)) * 703;
+    var bmiCategory = getBMICategory(bmi);
+    document.getElementById('result').innerHTML = `Your BMI is: ${bmi.toFixed(2)} (${bmiCategory})`;
+    document.getElementById('result').style.display = 'block';
+    document.getElementById('submitBMI').style.display = 'inline-block';
+};
+
+document.getElementById('submitBMI').onclick = function() {
+    document.getElementById('bmiCalculator').style.display = 'none';
+    document.getElementById('thankYouMessage').style.display = 'block';
+};
+</script>
+
+</body>
+</html>

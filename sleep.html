@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleep Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0030ff, #00c7ff); /* Corrected linear gradient */
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+    form {
+      background-color: rgba(100, 149, 237, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    input[type="range"], input[type="text"], textarea {
+      width: 100%;
+      margin-top: 5px;
+    }
+    .range-value {
+      margin: 10px 0;
+      display: block;
+    }
+    .answer-box {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7); /* Darker background for better visibility */
+      border-radius: 10px;
+      color: #ffffff; /* Ensured text color is white for visibility */
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #002072;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sleep Tracker</h1>
+    <form id="sleep-form">
+      <label for="hours">How many hours did you sleep last night?</label>
+      <input type="range" id="hours" name="hours" min="0" max="12" step="0.5" oninput="this.nextElementSibling.value = this.value">
+      <output class="range-value">6</output> <!-- Default value -->
+
+      <label for="quality">Rate the quality of your sleep (1-10)</label>
+      <input type="range" id="quality" name="quality" min="1" max="10" oninput="this.nextElementSibling.value = this.value">
+      <output class="range-value">5</output> <!-- Default value -->
+
+      <label for="dreams">Did you remember any dreams? If so, describe briefly.</label>
+      <textarea id="dreams" name="dreams" rows="3"></textarea>
+      
+      <label for="feel">How do you feel today?</label>
+      <textarea id="feel" name="feel" rows="3"></textarea>
+      
+      <button type="submit">Generate Sleep Analysis</button>
+    </form>
+    
+    <div class="answer-box" id="answer-box">
+      <!-- Answer and suggestions will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('sleep-form');
+    const answerBox = document.getElementById('answer-box');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const hours = formData.get('hours');
+      const quality = formData.get('quality');
+      const dreams = formData.get('dreams');
+      const feel = formData.get('feel');
+
+      // Analysis and suggestions
+      const analysis = `Your sleep analysis: 
+                        Hours slept: ${hours} hours,
+                        Sleep quality: ${quality}/10,
+                        Dreams: ${dreams || 'None'},
+                        Feelings: ${feel}.`;
+
+      let suggestion = "Suggestions for healthier sleep: Ensure a consistent sleep schedule, ";
+      suggestion += "avoid caffeine and screens before bedtime, and create a relaxing bedtime routine.";
+
+      if(hours < 7) {
+        suggestion += " Try to get at least 7-9 hours of sleep each night.";
+      } else {
+        suggestion += " Keep up the good work with your sleep duration!";
+      }
+
+      if(quality < 5) {
+        suggestion += " Focus on improving your sleep environment and reducing stress.";
+      }
+
+      answerBox.innerHTML = `<p>${analysis}</p><p>${suggestion}</p>`;
+    });
+  </script>
+</body>
+</html>
